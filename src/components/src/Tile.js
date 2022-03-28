@@ -1,12 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
+import HogDetails from "./HogDetails";
 
-function Tile({greased, highestMedal, image, name, specialty, weight}) {
+function Tile({hog}) {
+  const [visibleDetails, setVisibleDetails] = useState(false);
+
+  function handleImageClick() {
+    setVisibleDetails(!visibleDetails)
+  }
+
   return (
     <div className="Tile">
-      <div className="label">{name}</div>
-      <img src={image} alt="hog"/>
+      <h1>{hog.name}</h1>
+      <img onClick={handleImageClick} height='200' width="200" src={hog.image} alt="hog"/>
+      { visibleDetails? <HogDetails hog={hog} /> : ""}
     </div>
-  )
+  );
 }
 
-export default Tile
+export default Tile;
